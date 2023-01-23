@@ -285,11 +285,19 @@ def blockEncode1D3B(outdata, encblock):
         outdata[1] += B
         outdata[2] += C
         outdata[3] += D
-def blockEncode(outdata, encblock, btype):
+def blockEncode(outdata, encblock, btype:BiosType):
     match btype:
-        case tD35B:
+        case BiosType.tD35B:
             blockEncodeF(outdata,encblock,enc1F1,enc1F2,enc1F3,enc1F4,enc1F5)
-        case t1F66:
+        case BiosType.t1F66:
             blockEncode1F66(outdata,encblock)
+        case BiosType.t1D3B:
+            blockEncode1D3B(outdata,encblock)
+        case BiosType.t6FF1:
+            blockEncode6FF1(outdata,encblock)
+        case BiosType.t3A5B:
+            blockEncode3A5B(outdata,encblock)
+        
+
         
 
