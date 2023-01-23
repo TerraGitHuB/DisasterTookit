@@ -299,7 +299,7 @@ def blockEncode(outdata, encblock, btype:BiosType):
             blockEncode3A5B(outdata,encblock)
         case _:
             blockEncodeF(outdata,encblock,enc0F1,enc0F2,enc0F3,enc0F4,enc0F5)
-        
+
 
         
 
