@@ -63,7 +63,7 @@ def enc1F4(num1, num2, num3):
 def enc1F5(num1, num2, num3):
     return ((num1 | ~num3) ^ num2)
 
-def encF3(num1, num2, num3):
+def enc0F3(num1, num2, num3):
     return (((num1 ^ num2) & num3) ^ num2)
 
 def enc1F1(func, num1, num2, num3, key):
@@ -103,10 +103,10 @@ def blockEncode3A5B(outdata, encblock):
            A = enc0F6(enc0F2,D,B,C,A,MD5magic[4*j+2]+encblock[4*j+2],17)
            C = enc0F6(enc0F2,A,D,B,C,MD5magic[4*j+3]+encblock[4*j+3],22)
         for j in range(4):
-            B = enc0F6(encF3,C,A,D,B,MD5magic[4*(j+4)]+encblock[4*j+1],5)
-            D = enc0F6(encF3,B,C,A,D,MD5magic[4*(j+4)+1]+encblock[(4*j+6)&0xF],9)
-            A = enc0F6(encF3,D,B,C,A,MD5magic[4*(j+4)+2]+encblock[(4*j-5)&0xF],14)
-            C = enc0F6(encF3,A,D,B,C,MD5magic[4*(j+4)+3]+encblock[4*j],20)
+            B = enc0F6(enc0F3,C,A,D,B,MD5magic[4*(j+4)]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,B,C,A,D,MD5magic[4*(j+4)+1]+encblock[(4*j+6)&0xF],9)
+            A = enc0F6(enc0F3,D,B,C,A,MD5magic[4*(j+4)+2]+encblock[(4*j-5)&0xF],14)
+            C = enc0F6(enc0F3,A,D,B,C,MD5magic[4*(j+4)+3]+encblock[4*j],20)
         for j in range(3):
             B = enc0F6(enc0F5,C,A,D,B,MD5magic[4*(11-j)]+encblock[(4*j-7)&0xF],4)
             D = enc0F6(enc0F5,B,C,A,D,MD5magic[4*(11-j)+1]+encblock[(4*j-4)&0xF],11)
@@ -139,10 +139,10 @@ def blockEncode1F66(outdata, encblock):
             C = enc0F6(enc0F2,D,A,B,C,MD5magic[16+4*j+2]+encblock[4*j+2],17)
             B = enc0F6(enc0F2,C,D,A,B,MD5magic[16+4*j+3]+encblock[4*j+3],22)
         for j in range(4):
-            A = enc0F6(encF3,B,C,D,A,MD5magic[4*(3-j)+48]+encblock[4*j+1],5)
-            D = enc0F6(encF3,A,B,C,D,MD5magic[4*(3-j)+48+1]+encblock[(4*j+6)&0xF],9)
-            C = enc0F6(encF3,D,A,B,C,MD5magic[4*(3-j)+48+2]+encblock[(4*j-5)&0xF],14)
-            B = enc0F6(encF3,C,D,A,B,MD5magic[4*(3-j)+48+3]+encblock[4*j],20)
+            A = enc0F6(enc0F3,B,C,D,A,MD5magic[4*(3-j)+48]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,A,B,C,D,MD5magic[4*(3-j)+48+1]+encblock[(4*j+6)&0xF],9)
+            C = enc0F6(enc0F3,D,A,B,C,MD5magic[4*(3-j)+48+2]+encblock[(4*j-5)&0xF],14)
+            B = enc0F6(enc0F3,C,D,A,B,MD5magic[4*(3-j)+48+3]+encblock[4*j],20)
         for j in range(3):
             B = enc0F6(enc0F4,C,D,A,B,MD5magic[4*(3-j)+32+3]+encblock[4*j+2],23)
             C = enc0F6(enc0F4,D,A,B,C,MD5magic[4*(3-j)+32+2]+encblock[(4*j-1)&0xF],16)
@@ -178,10 +178,10 @@ def blockEncode1F66(outdata, encblock):
             C = enc0F6(enc0F2,D,A,B,C,MD5magic[4*j+2]+encblock[(4*j+2)],17)
             B = enc0F6(enc0F2,C,D,A,B,MD5magic[4*j+3]+encblock[4*j+3],22)
         for i in range(4):
-            A = enc0F6(encF3,B,C,D,A,MD5magic[16+4*j]+encblock[4*j+1],5)
-            D = enc0F6(encF3,A,B,C,D,MD5magic[16+4*j+1]+encblock[(4*j+6)&0xF],9)
-            C = enc0F6(encF3,D,A,B,C,MD5magic[16+4*j+2]+encblock[(4*j-5)&0xF],14)
-            B = enc0F6(encF3,C,D,A,B,MD5magic[16+4*j+3]+encblock[4*j],20);
+            A = enc0F6(enc0F3,B,C,D,A,MD5magic[16+4*j]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,A,B,C,D,MD5magic[16+4*j+1]+encblock[(4*j+6)&0xF],9)
+            C = enc0F6(enc0F3,D,A,B,C,MD5magic[16+4*j+2]+encblock[(4*j-5)&0xF],14)
+            B = enc0F6(enc0F3,C,D,A,B,MD5magic[16+4*j+3]+encblock[4*j],20);
         outdata[0] += A
         outdata[1] += B
         outdata[2] += C
@@ -203,10 +203,10 @@ def blockEncode6FF1(outdata, encblock):
             C = enc0F6(enc0F2,C,D,A,B,MD5magic[4*j+32+2]+encblock[4*j+2],17)
             B = enc0F6(enc0F2,B,C,D,A,MD5magic[4*j+32+3]+encblock[4*j+3],22)
         for j in range(4):
-            A = enc0F6(encF3,A,B,C,D,MD5magic[4*j]+encblock[4*j+1],5)
-            D = enc0F6(encF3,D,A,B,C,MD5magic[4*j+1]+encblock[(4*j+6)&0xF],9)
-            C = enc0F6(encF3,C,D,A,B,MD5magic[4*j+2]+encblock[(4*j-5)&0xF],14)
-            B = enc0F6(encF3,B,C,D,A,MD5magic[4*j+3]+encblock[4*j],20)
+            A = enc0F6(enc0F3,A,B,C,D,MD5magic[4*j]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,D,A,B,C,MD5magic[4*j+1]+encblock[(4*j+6)&0xF],9)
+            C = enc0F6(enc0F3,C,D,A,B,MD5magic[4*j+2]+encblock[(4*j-5)&0xF],14)
+            B = enc0F6(enc0F3,B,C,D,A,MD5magic[4*j+3]+encblock[4*j],20)
         for j in range(3):
             B = enc0F6(enc0F4,B,C,D,A,MD5magic[4*j+16+3]+encblock[4*j+2],23)
             C = enc0F6(enc0F4,C,D,A,B,MD5magic[4*j+16+2]+encblock[(4*j-1)&0xF],16)
@@ -243,10 +243,10 @@ def blockEncode6FF1(outdata, encblock):
             D = enc0F6(enc0F2,D,A,B,C,MD5magic[4*j+1]+encblock[4*j+1],12)
             A = enc0F6(enc0F2,A,B,C,D,MD5magic[4*j]+encblock[4*j],7)
         for j in range(4):
-            A = enc0F6(encF3,A,B,C,D,MD5magic[4*j+48]+encblock[4*j+1],5)
-            D = enc0F6(encF3,D,A,B,C,MD5magic[4*j+48+1]+encblock[(4*j+6)&0xF],9)
-            C = enc0F6(encF3,C,D,A,B,MD5magic[4*j+48+2]+encblock[(4*j-5)&0xF],14)
-            B = enc0F6(encF3,B,C,D,A,MD5magic[4*j+48+3]+encblock[4*j],20)
+            A = enc0F6(enc0F3,A,B,C,D,MD5magic[4*j+48]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,D,A,B,C,MD5magic[4*j+48+1]+encblock[(4*j+6)&0xF],9)
+            C = enc0F6(enc0F3,C,D,A,B,MD5magic[4*j+48+2]+encblock[(4*j-5)&0xF],14)
+            B = enc0F6(enc0F3,B,C,D,A,MD5magic[4*j+48+3]+encblock[4*j],20)
         outdata[0] += A
         outdata[1] += B
         outdata[2] += C
@@ -267,10 +267,10 @@ def blockEncode1D3B(outdata, encblock):
             C = enc0F6(enc0F2,D,A,B,C,MD5magic[4*j+2]+encblock[4*j+2],17)
             B = enc0F6(enc0F2,C,D,A,B,MD5magic[4*j+3]+encblock[4*j+3],22)
         for j in range(4):
-            A = enc0F6(encF3,B,C,D,A,MD5magic[4*(j+4)]+encblock[4*j+1],5)
-            D = enc0F6(encF3,A,B,C,D,MD5magic[4*(j+4)+1]+encblock[(4*j+6)&0xF],9)
-            C = enc0F6(encF3,D,A,B,C,MD5magic[4*(j+4)+2]+encblock[(4*j-5)&0xF],14)
-            B = enc0F6(encF3,C,D,A,B,MD5magic[4*(j+4)+3]+encblock[4*j],20)
+            A = enc0F6(enc0F3,B,C,D,A,MD5magic[4*(j+4)]+encblock[4*j+1],5)
+            D = enc0F6(enc0F3,A,B,C,D,MD5magic[4*(j+4)+1]+encblock[(4*j+6)&0xF],9)
+            C = enc0F6(enc0F3,D,A,B,C,MD5magic[4*(j+4)+2]+encblock[(4*j-5)&0xF],14)
+            B = enc0F6(enc0F3,C,D,A,B,MD5magic[4*(j+4)+3]+encblock[4*j],20)
         for j in range(3):
             B = enc0F6(enc0F4,C,D,A,B,MD5magic[4*(3-j)+32+3]+encblock[4*j+2],23)
             C = enc0F6(enc0F4,D,A,B,C,MD5magic[4*(3-j)+32+2]+encblock[(4*j-1)&0xF],16)
@@ -297,6 +297,8 @@ def blockEncode(outdata, encblock, btype:BiosType):
             blockEncode6FF1(outdata,encblock)
         case BiosType.t3A5B:
             blockEncode3A5B(outdata,encblock)
+        case _:
+            blockEncodeF(outdata,encblock,enc0F1,enc0F2,enc0F3,enc0F4,enc0F5)
         
 
         
