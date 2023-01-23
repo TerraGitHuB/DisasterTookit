@@ -288,5 +288,8 @@ def blockEncode1D3B(outdata, encblock):
 def blockEncode(outdata, encblock, btype):
     match btype:
         case tD35B:
-            print("Case status thing")
+            blockEncodeF(outdata,encblock,enc1F1,enc1F2,enc1F3,enc1F4,enc1F5)
+        case t1F66:
+            blockEncode1F66(outdata,encblock)
+        
 
