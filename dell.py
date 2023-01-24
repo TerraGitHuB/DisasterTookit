@@ -300,6 +300,7 @@ def blockEncode(outdata, encblock, btype:BiosType):
         case _:
             blockEncodeF(outdata,encblock,enc0F1,enc0F2,enc0F3,enc0F4,enc0F5)
 
-
+def encode(inbuf,cnt,btype):
+    print("Encode subroutine")
         
 
