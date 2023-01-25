@@ -301,6 +301,36 @@ def blockEncode(outdata, encblock, btype:BiosType):
             blockEncodeF(outdata,encblock,enc0F1,enc0F2,enc0F3,enc0F4,enc0F5)
 
 def encode(inbuf,cnt,btype):
-    print("Encode subroutine")
+    encBlock = bytearray(16)
+    initData()
+    struct.pack_into(f"{cnt}s", encBlock, 0, inbuf[:cnt])
+    encBlock[cnt] = 0x80
+    encBlock[cnt+1:] = b'\x00'*(64-1-cnt)
+    struct.pack_into("<I", encBlock, 16-2, cnt<<3)
+    blockEncode(outData,encBlock,btype)
+
         
 
+
+print("                                                                                ")
+print("                                                                                ")
+print("                                   %%       %%                                  ")
+print("                                &%%%%%%%%%%%%%%%                                ")
+print("                               %%%%%%%%%%%%%%%%%%%                              ")
+print("                              %%%%%%%%%%%%%%%%%%%%%                             ")
+print("                              %%%%%%%%%%%%%%%%%%%%%                             ")
+print("                             %%%%%%%%%%%%%%%%%%%%%%%                            ")
+print("                       %%%%%%    %%%%%%%%%%%%%%%    %%%%%%                      ")
+print("                    %%%%%%%%%                       %%%%%%%%                    ")
+print("                     %%%%%%%%%%                   %%%%%%%%%%                    ")
+print("                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                       ")
+print("                            %%%%%%%%%%%%%%%%%%%%%%%%%                           ")
+print("                                    %%%%%%%%%                                   ")
+print("")
+print("")
+print("  _______ _            __  __                               _    _       _     _    _            _      ")
+print(" |__   __| |          |  \/  |                             | |  | |     | |   | |  | |          | |            ")
+print("    | |  | |__   ___  | \  / | __ _ _ __ ___   ___  _ __   | |__| | __ _| |_  | |__| | __ _  ___| | _____ _ __ ")
+print("    | |  | '_ \ / _ \ | |\/| |/ _` | '__/ _ \ / _ \| '_ \  |  __  |/ _` | __| |  __  |/ _` |/ __| |/ / _ \ '__|")
+print("    | |  | | | |  __/ | |  | | (_| | | | (_) | (_) | | | | | |  | | (_| | |_  | |  | | (_| | (__|   <  __/ |   ")
+print("    |_|  |_| |_|\___| |_|  |_|\__,_|_|  \___/ \___/|_| |_| |_|  |_|\__,_|\__| |_|  |_|\__,_|\___|_|\_\___|_|   ")
