@@ -3,7 +3,7 @@
 from enum import Enum
 import struct
 import time
-
+from colorama import Fore
 
 class BiosType(Enum):
     t595B = 0
