@@ -308,6 +308,9 @@ def encode(inbuf,cnt,btype):
     encBlock[cnt+1:] = b'\x00'*(64-1-cnt)
     struct.pack_into("<I", encBlock, 16-2, cnt<<3)
     blockEncode(outData,encBlock,btype)
+def psw(bfunc,btype,outbuf):
+    if (bfunc == fHDDold):
+        print("More incomplete subroutines")
 
         
 
