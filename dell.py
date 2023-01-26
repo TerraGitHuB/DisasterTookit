@@ -314,7 +314,7 @@ def encode(inbuf,cnt,btype):
 
 print("                                                                                ")
 print("                                                                                ")
-print(Fore.Red + "                                   %%       %%                                  ")
+print(Fore.RED + "                                   %%       %%                                  ")
 print("                                &%%%%%%%%%%%%%%%                                ")
 print("                               %%%%%%%%%%%%%%%%%%%                              ")
 print("                              %%%%%%%%%%%%%%%%%%%%%                             ")
