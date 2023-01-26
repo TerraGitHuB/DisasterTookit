@@ -311,6 +311,10 @@ def encode(inbuf,cnt,btype):
 def psw(bfunc,btype,outbuf):
     if (bfunc == fHDDold):
         print("More incomplete subroutines")
+        struct.pack_into(f"{11}s", inData, 0, buf1input[:11])
+        calcsuffix(bfunc,btype,outbuf)
+        for cnt in range(8):
+            
 
         
 
