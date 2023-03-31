@@ -314,6 +314,19 @@ def psw(bfunc,btype,outbuf):
         struct.pack_into(f"{11}s", inData, 0, buf1input[:11])
         calcsuffix(bfunc,btype,outbuf)
         for cnt in range(8):
+            outbuf[cnt] = scancods[outbuf[cnt]]
+        else:
+            inData = bytes(100)
+            inData = bytes([0] * 100)
+
+            if (bfunc==fSVCTAG):
+                cnt = 7
+            else:
+                cnt = 11
+            if ((bfunc==fHDDSN) && (btype==tA95B)):
+                calcsuffix(bfunc,btype,outbuf)
+                
+
             
 
         
@@ -322,7 +335,7 @@ def psw(bfunc,btype,outbuf):
 print("                                                                                ")
 print(Fore.RED + "                                                                                ")
 print("                                   %%       %%                                  ")
-print("                                &%%%%%%%%%%%%%%%                                ")
+print("                                %%%%%%%%%%%%%%%%                                ")
 print("                               %%%%%%%%%%%%%%%%%%%                              ")
 print("                              %%%%%%%%%%%%%%%%%%%%%                             ")
 print("                              %%%%%%%%%%%%%%%%%%%%%                             ")
